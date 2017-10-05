@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AlgorithmPractice.iml" filepath="$PROJECT_DIR$/AlgorithmPractice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/algopractice_main.iml" filepath="$PROJECT_DIR$/.idea/modules/algopractice_main.iml" group="algopractice" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/algopractice_test.iml" filepath="$PROJECT_DIR$/.idea/modules/algopractice_test.iml" group="algopractice" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/main.iml" filepath="$PROJECT_DIR$/.idea/modules/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/main_main.iml" filepath="$PROJECT_DIR$/.idea/modules/main_main.iml" group="main" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/main_test.iml" filepath="$PROJECT_DIR$/.idea/modules/main_test.iml" group="main" />

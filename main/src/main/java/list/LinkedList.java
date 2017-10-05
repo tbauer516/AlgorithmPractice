@@ -23,17 +23,19 @@ public class LinkedList {
 		size++;
 	}
 
-	public ListNode remove() {
+	public Integer remove() {
 		if (this.root == null)
 			return null;
 
 		ListNode removed = this.root;
 		this.root = this.root.next;
 		this.size--;
-		return removed;
+		if (removed == null)
+			return null;
+		return removed.value;
 	}
 
-	public ListNode delete(int value) {
+	public Integer delete(int value) {
 		if (this.root == null)
 			return null;
 
@@ -58,7 +60,7 @@ public class LinkedList {
 		if (removed.next == null)
 			this.last = current;
 
-		return removed;
+		return removed.value;
 	}
 
 	public void reverse() {
@@ -79,14 +81,14 @@ public class LinkedList {
 		return this.size;
 	}
 
-	public void  print() {
+	public String toString() {
 		ListNode current = this.root;
 		String result = "root";
 		while (current != null) {
 			result += " -> " + current.value;
 			current = current.next;
 		}
-		System.out.println(result);
+		return result;
 	}
 
 	protected class ListNode {

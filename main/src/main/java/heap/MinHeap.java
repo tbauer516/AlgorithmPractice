@@ -23,37 +23,47 @@ public class MinHeap {
 		tree[index] = newNode;
 	}
 
-	public HeapNode deleteMin() {
+	public Integer peek() {
+		if (this.isEmpty()) throw new IllegalStateException("Cannot delete min on an empty heap");
+		HeapNode min = tree[1];
+		if (min == null)
+			return null;
+		return min.getValue();
+	}
+
+	public Integer deleteMin() {
 		if (this.isEmpty()) throw new IllegalStateException("Cannot delete min on an empty heap");
 		HeapNode min = tree[1];
 		int hole = percolateDown(1, tree[size].getPriority());
 		tree[hole] = tree[size];
 		size--;
-		return min;
+		if (min == null)
+			return null;
+		return min.getValue();
 	}
 
-	public HeapNode remove(int index) {
+	public Integer remove(int index) {
 		if (index > size)
 			return null;
-		tree[index].priority = tree[1].priority - 1;
-		decreaseKey(index);
+//		tree[index].priority = tree[1].priority - 1;
+		decreaseKey(index, tree[index].priority - tree[1].priority + 1);
 		return deleteMin();
 	}
 
-	public void decreaseKey(int index) {
+	public void decreaseKey(int index, int amount) {
 		if (index > size)
 			return;
 		HeapNode current = tree[index];
-		tree[index].priority--;
+		tree[index].priority -= amount;
 		int hole = percolateUp(index, tree[index].getPriority());
 		tree[hole] = current;
 	}
 
-	public void increaseKey(int index) {
+	public void increaseKey(int index, int amount) {
 		if (index > size)
 			return;
 		HeapNode current = tree[index];
-		tree[index].priority++;
+		tree[index].priority += amount;
 		int hole = percolateDown(index, tree[index].getPriority());
 		tree[hole] = current;
 	}
@@ -63,7 +73,7 @@ public class MinHeap {
 			int left = hole * 2;
 			int right = left + 1;
 			int target;
-			if (tree[left].getPriority() < tree[right].getPriority() || right > size)
+			if (right > size || tree[left].getPriority() < tree[right].getPriority())
 				target = left;
 			else
 				target = right;
@@ -87,6 +97,7 @@ public class MinHeap {
 	public boolean isEmpty() {
 			return this.size == 0;
 	}
+	public int size() { return this.size; }
 
 	private void checkSize() {
 		if (size == tree.length - 1)

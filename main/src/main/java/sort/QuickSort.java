@@ -2,20 +2,13 @@ package sort;
 
 import static sort.SortHelper.swap;
 
-public class QuickSort implements Sort {
-
-	/**
-	 * RUN      O(n(log(n))
-	 * SPACE    O(n)
-	 *
-	 * @param arr
-	 */
-	public int[] sort(int[] arr) {
+public class QuickSort {
+	public static int[] sort(int[] arr) {
 		quickSort(arr, 0, arr.length - 1);
 		return arr;
 	}
 
-	private void quickSort(int[] arr, int lowI, int highI) {
+	private static void quickSort(int[] arr, int lowI, int highI) {
 		if (lowI >= highI)
 			return;
 		int mid = partition(arr, lowI, highI);
@@ -23,7 +16,7 @@ public class QuickSort implements Sort {
 		quickSort(arr, mid + 1, highI);
 	}
 
-	private int partition(int[] arr, int lowI, int highI) {
+	private static int partition(int[] arr, int lowI, int highI) {
 		if (highI <= lowI)
 			return lowI;
 

@@ -1,7 +1,7 @@
 package search;
 
 public class BinarySearch {
-	public boolean search(int[] values, int value) {
+	public static boolean search(int[] values, int value) {
 		int index = values.length / 2;
 		int low = 0;
 		int high = values.length - 1;

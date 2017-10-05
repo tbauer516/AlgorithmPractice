@@ -1,32 +1,33 @@
 package graph;
 
-//import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
-public class UndirectedGraphTest {
+public class UnweightedUndirectedGraphTest {
+
 	@Test
 	public void addVertex() {
-		UndirectedGraph testGraph = new UndirectedGraph();
-		testGraph.addVertex(new Vertex(3));
-		assertEquals("3\n", testGraph.toString());
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
+		Vertex one = new Vertex(1);
+		testGraph.addVertex(one);
+		assertEquals(true, testGraph.containsVertex(one));
+		assertEquals(false, testGraph.containsVertex(new Vertex(2)));
 	}
 
 	@Test
 	public void removeVertex() {
-		UndirectedGraph testGraph = new UndirectedGraph();
-		Vertex testVertex = new Vertex(3);
-		testGraph.addVertex(testVertex);
-		assertEquals("3\n", testGraph.toString());
-		testGraph.removeVertex(testVertex);
-		assertEquals("", testGraph.toString());
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
+		Vertex one = new Vertex(1);
+		testGraph.addVertex(one);
+		assertEquals(true, testGraph.containsVertex(one));
+		testGraph.removeVertex(one);
+		assertEquals(false, testGraph.containsVertex(one));
 	}
 
 	@Test
 	public void addEdge() {
-		UndirectedGraph testGraph = new UndirectedGraph();
+		UnweightedUndirectedGraph testGraph = new UnweightedUndirectedGraph();
 		Vertex test3 = new Vertex(3);
 		Vertex test4 = new Vertex(4);
 		testGraph.addVertex(test3);
@@ -34,24 +35,27 @@ public class UndirectedGraphTest {
 		assertEquals(false, testGraph.isEdge(test3, test4));
 		testGraph.addEdge(test3, test4);
 		assertEquals(true, testGraph.isEdge(test3, test4));
+		assertEquals(true, testGraph.isEdge(test4, test3));
 	}
 
 	@Test
 	public void removeEdge() {
-		UndirectedGraph testGraph = new UndirectedGraph();
+		UnweightedUndirectedGraph testGraph = new UnweightedUndirectedGraph();
 		Vertex test3 = new Vertex(3);
 		Vertex test4 = new Vertex(4);
 		testGraph.addVertex(test3);
 		testGraph.addVertex(test4);
 		testGraph.addEdge(test3, test4);
 		assertEquals(true, testGraph.isEdge(test3, test4));
+		assertEquals(true, testGraph.isEdge(test4, test3));
 		testGraph.removeEdge(test3, test4);
 		assertEquals(false, testGraph.isEdge(test3, test4));
+		assertEquals(false, testGraph.isEdge(test4, test3));
 	}
 
 	@Test
 	public void isEdge() {
-		UndirectedGraph testGraph = new UndirectedGraph();
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
 		Vertex test3 = new Vertex(3);
 		Vertex test4 = new Vertex(4);
 		testGraph.addVertex(test3);
@@ -63,7 +67,7 @@ public class UndirectedGraphTest {
 
 	@Test
 	public void BFS() {
-		UndirectedGraph testGraph = new UndirectedGraph();
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
 		Vertex one = new Vertex(1);
 		Vertex two = new Vertex(2);
 		Vertex three = new Vertex(3);
@@ -80,12 +84,12 @@ public class UndirectedGraphTest {
 		testGraph.addEdge(four, five);
 		testGraph.addEdge(two, five);
 		testGraph.addEdge(three, one);
-		assertEquals("3 -> 4 -> 5", testGraph.BFS(three, five));
+		assertEquals("1 -> 2 -> 3 -> 4", testGraph.BFS(one, four));
 	}
 
 	@Test
 	public void DFS() {
-		UndirectedGraph testGraph = new UndirectedGraph();
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
 		Vertex one = new Vertex(1);
 		Vertex two = new Vertex(2);
 		Vertex three = new Vertex(3);
@@ -101,6 +105,26 @@ public class UndirectedGraphTest {
 		testGraph.addEdge(four, five);
 		testGraph.addEdge(three, one);
 		assertEquals("3 -> 4 -> 5", testGraph.BFS(three, five));
+	}
+
+	@Test
+	public void print() {
+		UnweightedDirectedGraph testGraph = new UnweightedDirectedGraph();
+		Vertex one = new Vertex(1);
+		Vertex two = new Vertex(2);
+		Vertex three = new Vertex(3);
+		Vertex four = new Vertex(4);
+		Vertex five = new Vertex(5);
+		testGraph.addVertex(one);
+		testGraph.addVertex(two);
+		testGraph.addVertex(three);
+		testGraph.addVertex(four);
+		testGraph.addVertex(five);
+		testGraph.addEdge(one, two);
+		testGraph.addEdge(three, four);
+		testGraph.addEdge(four, five);
+		testGraph.addEdge(three, one);
+		System.out.println(testGraph.toString());
 	}
 
 }

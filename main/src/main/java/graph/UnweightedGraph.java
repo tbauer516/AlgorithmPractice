@@ -1,18 +1,17 @@
 package graph;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-public class UndirectedGraph {
-	private Map<Vertex, Set<Vertex>> adjacencyList;
-
-	public UndirectedGraph() {
-		adjacencyList = new HashMap<>();
-	}
+public abstract class UnweightedGraph {
+	Map<Vertex, Set<Vertex>> adjacencyList;
 
 	public void addVertex(Vertex v) {
 		if (adjacencyList.containsKey(v))
 			throw new IllegalArgumentException("Vertex " + v.getValue() + " already exists");
-		adjacencyList.put(v, new  HashSet<>());
+		adjacencyList.put(v, new HashSet<>());
 		return;
 	}
 
@@ -26,23 +25,13 @@ public class UndirectedGraph {
 		}
 	}
 
-	public void addEdge(Vertex v, Vertex w) {
-		if (!adjacencyList.containsKey(v))
-			throw new IllegalArgumentException("Vertex " + v.getValue() + " was not found");
-		if (adjacencyList.get(v).contains(w))
-			throw new IllegalArgumentException("Edge " + v.getValue() + " -> " + w.getValue() + " already exists");
-		adjacencyList.get(v).add(w);
-		adjacencyList.get(w).add(v);
+	public boolean containsVertex(Vertex v) {
+		return this.adjacencyList.containsKey(v);
 	}
 
-	public void removeEdge(Vertex v, Vertex w) {
-		if (!adjacencyList.containsKey(v))
-			throw new IllegalArgumentException("Vertex " + v.getValue() + " was not found");
-		if (!adjacencyList.get(v).contains(w))
-			throw new IllegalArgumentException("Edge " + v.getValue() + " -> " + w.getValue() + " does not exist");
-		adjacencyList.get(v).remove(w);
-		adjacencyList.get(w).remove(v);
-	}
+	public abstract void addEdge(Vertex v, Vertex w);
+
+	public abstract void removeEdge(Vertex v, Vertex w);
 
 	public boolean isEdge(Vertex v, Vertex w) {
 		if (!adjacencyList.containsKey(v))
@@ -94,4 +83,5 @@ public class UndirectedGraph {
 		}
 		return print;
 	}
+
 }

@@ -1,20 +1,13 @@
 package sort;
 
-public class MergeSort implements Sort {
-
-	/**
-	 * RUN      O(n(log(n))
-	 * SPACE    O(n)
-	 *
-	 * @param arr, the array we are sorting
-	 */
-	public int[] sort(int[] arr) {
+public class MergeSort {
+	public static int[] sort(int[] arr) {
 		if (arr.length < 1)
 			return arr;
 		return split(arr);
 	}
 
-	private int[] split(int[] input) {
+	private static int[] split(int[] input) {
 		if (input.length == 1) {
 			return input;
 		}
@@ -32,7 +25,7 @@ public class MergeSort implements Sort {
 		return merge(left, right);
 	}
 
-	private int[] merge(int[] left, int[] right) {
+	private static int[] merge(int[] left, int[] right) {
 		int indexL = 0;
 		int indexR = 0;
 		int indexM = 0;
