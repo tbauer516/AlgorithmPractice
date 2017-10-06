@@ -47,6 +47,7 @@ public class Dijkstra {
 					}
 				}
 			}
+
 		}
 
 		DijkstraNode current = vertexToDijkstra.get(w);
