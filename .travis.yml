@@ -1,4 +1,4 @@
 language: java
 script:
 - cd main
-- gradlew test
+- ./gradlew test
